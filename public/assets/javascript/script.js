@@ -13,8 +13,9 @@ let queryUrl3 = `http://10.0.0.196/api/CJCRYtzqNnXkwK8nzGd9m5BDT8LuNt-jhCwCesWs/
 let colorUrl = "http://10.0.0.196/api/CJCRYtzqNnXkwK8nzGd9m5BDT8LuNt-jhCwCesWs/lights/2/state";
 
 // let colorBody = {"on":true, "sat":254, "bri":254,"hue": color}
-let redColor = 60000;
+let redColor = 65000;
 let greenColor = 20000;
+let colorArray = [10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000];
 
 // funcctions
 // ---------------------------------------------------------------------------------------------------------
@@ -65,16 +66,23 @@ var turnOn = ()=> {
       });
 }
 
-var setColor = () => {
+var setColor = (color) => {
     $.ajax({
         url: colorUrl,
         context: document.body,
         method: "PUT",
         dataType: "json",
-        data: JSON.stringify({"on":true, "sat":254, "bri":254,"hue": 70000})
+        data: JSON.stringify({"on":true, "sat":254, "bri":254,"hue": color})
       }).done(function(response) {
         console.log(response)
       });    
+}
+
+var loopColor = (array) => {
+    console.log("button works");
+    for (var i=0; i<array.length; i++) {
+        setTimeout(setColor(array[i]), 10000);
+    }
 }
 
 
@@ -87,12 +95,17 @@ var setColor = () => {
     $("#turnOff").on("click", turnOff);
     $("#turnOn").on("click", turnOn);
 
-    // $("#red").on("click", setColor(redColor));
-    // $("#green").on("click", setColor(greenColor));
-    $("#greenButton").on("click", setColor);
+    $("#greenButton").on("click", function() {
+        setColor(greenColor);
+    });
+    $("#redButton").on("click",function() {
+        setColor(redColor)
+    });
 
 
-    $("#offGroup").click(setGroup)
+    $("#offGroup").on("click", function() {
+        loopColor(colorArray);
+    })
     getGroup();
 
 });
