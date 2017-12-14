@@ -85,6 +85,11 @@ var loopColor = (array) => {
     }
 }
 
+var setRandomNumber = () => {
+    var random = Math.floor((Math.random() * 70000) + 5000);
+    return random;
+};
+
 
 
 
@@ -102,8 +107,12 @@ var loopColor = (array) => {
         setColor(redColor)
     });
 
-
     $("#offGroup").on("click", function() {
+        console.log("button Works")
+    });
+
+
+    $("#loopColors").on("click", function() {
         loopColor(colorArray);
     })
     getGroup();
