@@ -1,0 +1,11 @@
+body {
+    background: rgb(65, 172, 180);
+}
+
+#redButton {
+    background: red;
+}
+
+#greenButton {
+    background: green;
+}

@@ -20,14 +20,14 @@ app.use(express.static("public"));
 
 // Database configuration with mongoose
 // mongoose.connect("mongodb://127.0.0.1:27017/hangman", { useMongoClient: true });
-mongoose.connect("mongodb://localhost:27017/hangman", { useMongoClient: true });
+// mongoose.connect("mongodb://localhost:27017/hangman", { useMongoClient: true });
 
-var db = mongoose.connection;
+// var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log("Mongoose Connection Successful");
-});
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+//   console.log("Mongoose Connection Successful");
+// });
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, "/../public/index.html"));
